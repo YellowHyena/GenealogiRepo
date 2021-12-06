@@ -19,11 +19,11 @@ namespace GenealogiProject.Utils
                 {
                     Delete(person);
                 }
-                else if(person != null && action == "parents")
+                else if (person != null && action == "ask for names")
                 {
-                    View.Parents(name, lastName);
-                }
 
+                }
+                else MenuHelper.PersonNotFound();
                 return person;
             }
         }
@@ -57,14 +57,41 @@ namespace GenealogiProject.Utils
 
         internal static void SearchByName(string input)
         {
+            input = input.ToLower();
             using (var db = new FamilyContext())
             {
-                var persons = db.People.Where(p => p.Name.Contains(input) || p.LastName.Contains(input)); 
-                foreach (var person in persons)
+                var persons = db.People.Where(p => p.Name.Contains(input) || p.LastName.Contains(input));
+                if (persons == null) Box.Simple(new string[] { "No results." });
+                else foreach (var person in persons)
                 {
                     Console.WriteLine(person.Name + " " + person.LastName);
                 }
+                Menu.SearchOptionsMenu();
             }        
+        }
+
+        internal static string[] AskForNames()
+        {
+            string input = "";
+            string[] split = new string[] { };
+            string name = "";
+            string lastName = "";
+
+            do
+            {
+                Console.Clear();
+                Box.Simple(new string[] 
+                {"Write the name and last name of " +
+                 "the person you want to search for " +
+                 "separated by a space"});
+
+                input = Console.ReadLine();
+                split = input.Split(' ');
+                name = split[0];
+                lastName = split[1];
+
+            } while (split.Length == 0);           
+            return split;
         }
     }
 }

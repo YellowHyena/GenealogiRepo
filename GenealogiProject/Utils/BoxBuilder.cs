@@ -33,8 +33,7 @@ namespace GenealogiProject
                 Console.Write("─");
             }
             Console.WriteLine("──┘");
-        }
-
+        }      
         public static void Table(DataTable dta, int length) //Skapar grafik åt tabellen där all data kan visas i ett rutnät.
                                                             //Teoretiskt oändligt många rows och columns kan skrivar ut. Längd på column baseras på längsta columntext
                                                             //Funkar inte om kollumerna är bredare än console window. Blir automatiskt radbyte då som bråkar med strukturen

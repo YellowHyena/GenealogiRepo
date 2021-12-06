@@ -8,6 +8,7 @@ namespace GenealogiProject
         static void Main(string[] args)
         {
             TheSimpsonsAdder.AddTheSimpsons();
+            View.Children("Homer", "Simpson");
             Menu.MainMenu();
         }
     }

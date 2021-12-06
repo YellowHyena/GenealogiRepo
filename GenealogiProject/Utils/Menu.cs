@@ -11,7 +11,7 @@
             {
                 case ConsoleKey.D1:
                     Console.Clear();
-
+                    //View.Everyone();
                     Console.ReadKey();
                     MainMenu();
                     break;
@@ -33,26 +33,26 @@
                 //    Console.ReadKey();
                 //    MainMenu();
                 //    break;
-                //case ConsoleKey.D5:
-                //    Console.Clear();
-                //    View.Top10L();
-                //    Console.ReadKey();
-                //    MainMenu();
-                //    break;
-                //case ConsoleKey.D6:
-                //    Console.Clear();
-                //    View.StartingLetter();
-                //    Console.ReadKey();
-                //    MainMenu();
-                //    break;
-                //default:
-                //    Console.Clear();
-                //    MainMenu();
-                //    break;
+                case ConsoleKey.D5:
+                    Console.Clear();
+                    View.Children(CRUD.AskForNames());
+                    Console.ReadKey();
+                    MainMenu();
+                    break;
+                    //case ConsoleKey.D6:
+                    //    Console.Clear();
+                    //    View.StartingLetter();
+                    //    Console.ReadKey();
+                    //    MainMenu();
+                    //    break;
+                    //default:
+                    //    Console.Clear();
+                    //    MainMenu();
+                    //    break;
             }
         }
 
-        private static void SearchOptionsMenu()
+        internal static void SearchOptionsMenu()
         {
             MenuHelper.SearchOptionsText();
             var key = Console.ReadKey().Key;
@@ -61,7 +61,7 @@
                 case ConsoleKey.D1:
                     Console.Clear();
                     Console.Write("Search for: ");
-                    CRUD.SearchByName(Console.ReadLine().ToLower());
+                    CRUD.SearchByName(Console.ReadLine());
                     break;
                 case ConsoleKey.D2:
                     Console.Clear();

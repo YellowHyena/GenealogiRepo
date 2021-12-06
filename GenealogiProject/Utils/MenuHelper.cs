@@ -19,9 +19,17 @@
             "[2]  Search for person",
             "[3]  Create person",
             "[4]  View a persons parents",
-            "[5]  View children",
-            "[6]  View all users whos name and last name share the same starting letter"});
+            "[5]  View a persons children",});
         }
+
+        internal static void PersonNotFound()
+        {
+            Box.Simple(new string[] 
+            {"Person not found. Did you spell it right?" +
+             "[1] Create new person"
+             "[2]  }
+        }
+
         internal static void SearchOptionsText()
         {
             Box.Simple(new string[]
