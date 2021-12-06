@@ -7,13 +7,19 @@ namespace GenealogiProject.Utils
     {
         public static Person FindAnd(string action, string name, string lastName, int father, int mother)
         {
+            action = action.ToLower();
             using (var db = new FamilyContext())
             {
-                var person = db.People.FirstOrDefault(h => h.Name == name); // Får error här för den är null
-                if (person == null && action.ToLower() == "add")            //Men den måste ju kunna va null för att denna raden ska funka?
+                var person = db.People.FirstOrDefault(h => h.Name == name);
+                if (person == null && action == "add")
                 {
                     Add(person, name, lastName, father, mother);
                 }
+                else if (person != null && action == "delete")
+                {
+                    Delete(person);
+                }
+
                 return person;
             }
         }
@@ -34,5 +40,16 @@ namespace GenealogiProject.Utils
             }
             return person;
         }
+
+        private static void Delete(Person person)
+        {
+            if (MenuHelper.Confirm($"delete {person.Name} {person.LastName}") == false) return;          
+            using(var db = new FamilyContext())
+            { 
+                db.People.Remove(person);
+                db.SaveChanges();
+            }
+        }
+
     }
 }
