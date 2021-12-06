@@ -19,23 +19,32 @@
             "[2]  Search for person",
             "[3]  Create person",
             "[4]  View a persons parents",
-            "[5]  View a persons children",});
+            "[5]  View a persons children",
+            "[6]  View a persons siblings"});
         }
 
-        internal static void PersonNotFound()
+        internal static void PersonNotFoundText()
         {
-            Box.Simple(new string[] 
-            {"Person not found. Did you spell it right?" +
-             "[1] Create new person"
-             "[2]  }
+            Box.Simple(new string[]
+            {"Person does not exist. Did you spell it right?",
+             "[1] Create new person",
+             "[2] Try again"});
         }
 
         internal static void SearchOptionsText()
         {
             Box.Simple(new string[]
-            {"[1] Search by name?",
-             "[2] Search by age?",  //null
-             "[3] Return to main menu?"});
+            {"[1] Search by name",
+             "[2] Search by age",  //null
+             "[3] Return to main menu"});
+        }
+
+        internal static void AskForNamesText()
+        {
+            Box.Simple(new string[]
+            {"Write the name and last name of " +
+                 "the person you want to search for " +
+                 "separated by a space"});
         }
     }
 }
