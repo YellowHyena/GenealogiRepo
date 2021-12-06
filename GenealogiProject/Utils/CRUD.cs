@@ -5,7 +5,7 @@ namespace GenealogiProject.Utils
 {
     internal class CRUD
     {
-        public static Person FindAnd(string action, string name = "", string lastName = "", int father = 0, int mother = 0)
+        public static void FindAnd(string action, string name = "", string lastName = "", int father = 0, int mother = 0)
         {
             action = action.ToLower();
             using (var db = new FamilyContext())
@@ -24,11 +24,10 @@ namespace GenealogiProject.Utils
 
                 }
                 else Menu.PersonNotFound();
-                return person;
             }
         }
 
-        private static Person Add(Person person, string name, string lastName, int father, int mother)
+        private static void Add(Person person, string name, string lastName, int father, int mother)
         {
             using (var db = new FamilyContext())
             {
@@ -42,7 +41,6 @@ namespace GenealogiProject.Utils
                 db.People.Add(person);
                 db.SaveChanges();
             }
-            return person;
         }
 
         private static void Delete(Person person)
