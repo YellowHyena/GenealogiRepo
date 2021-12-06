@@ -35,7 +35,7 @@ namespace GenealogiProject
             Console.WriteLine("──┘");
         }
 
-        public static void Table(DataTable dta, int lenght) //Skapar grafik åt tabellen där all data kan visas i ett rutnät.
+        public static void Table(DataTable dta, int length) //Skapar grafik åt tabellen där all data kan visas i ett rutnät.
                                                             //Teoretiskt oändligt många rows och columns kan skrivar ut. Längd på column baseras på längsta columntext
                                                             //Funkar inte om kollumerna är bredare än console window. Blir automatiskt radbyte då som bråkar med strukturen
         {
@@ -47,7 +47,7 @@ namespace GenealogiProject
             Console.Write("┌");
             foreach (DataColumn person in dta.Columns)
             {
-                for (int i = 0; i < lenght + 2; i++) // +2 iochmed att det finns mellanrum
+                for (int i = 0; i < length + 2; i++) // +2 iochmed att det finns mellanrum
                 {
                     Console.Write("─");
                 }
@@ -66,7 +66,7 @@ namespace GenealogiProject
                 Console.Write("│ ");
                 for (int i = 0; i < person.ItemArray.Length; i++)
                 {
-                    int spaces = lenght - person[i].ToString().Length;   //räknar ut hur mycket mellanrum det är kvar tills slutet av "boxen" så alla "boxar" blir lika stora
+                    int spaces = length - person[i].ToString().Length;   //räknar ut hur mycket mellanrum det är kvar tills slutet av "boxen" så alla "boxar" blir lika stora
                     Console.Write(person[i]);
                     for (int s = 0; s < spaces; s++)
                     {
@@ -92,7 +92,7 @@ namespace GenealogiProject
                 //Radbrytning utfyllning
                 for (int i = 0; i < person.ItemArray.Length; i++)
                 {
-                    for (int l = 0; l < lenght; l++)
+                    for (int l = 0; l < length; l++)
                     {
                         Console.Write("─");
                     }

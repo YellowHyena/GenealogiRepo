@@ -19,6 +19,10 @@ namespace GenealogiProject.Utils
                 {
                     Delete(person);
                 }
+                else if(action == "edit")
+                {
+                    Edit(person);
+                }
 
                 return person;
             }
@@ -50,6 +54,5 @@ namespace GenealogiProject.Utils
                 db.SaveChanges();
             }
         }
-
     }
 }
