@@ -10,7 +10,7 @@ namespace GenealogiProject.Utils
             action = action.ToLower();
             using (var db = new FamilyContext())
             {
-                var person = db.People.FirstOrDefault(h => h.Name == name);
+                var person = db.People.FirstOrDefault(h => h.Name == name && h.LastName ==lastName);
                 if (person == null && action == "add")
                 {
                     Add(person, name, lastName, father, mother);
@@ -19,9 +19,9 @@ namespace GenealogiProject.Utils
                 {
                     Delete(person);
                 }
-                else if(action == "edit")
+                else if(person != null && action == "parents")
                 {
-                    Edit(person);
+                    View.Parents(name, lastName);
                 }
 
                 return person;
@@ -47,12 +47,27 @@ namespace GenealogiProject.Utils
 
         private static void Delete(Person person)
         {
-            if (MenuHelper.Confirm($"delete {person.Name} {person.LastName}") == false) return;          
+            if (MenuHelper.ConfirmMenu($"delete {person.Name} {person.LastName}") == false) return;          
             using(var db = new FamilyContext())
             { 
                 db.People.Remove(person);
                 db.SaveChanges();
             }
+        }
+
+        internal static void SearchByName()
+        {
+            Console.Write("Search for: ");
+            string input = Console.ReadLine().ToLower();
+
+            using (var db = new FamilyContext())
+            {
+                var persons = db.People.Where(p => p.Name.Contains(input) || p.LastName.Contains(input)); 
+                foreach (var person in persons)
+                {
+                    Console.WriteLine(person.Name + " " + person.LastName);
+                }
+            }        
         }
     }
 }
