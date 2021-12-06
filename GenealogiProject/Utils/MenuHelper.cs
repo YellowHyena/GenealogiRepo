@@ -18,7 +18,7 @@
             "[1]  View all persons",
             "[2]  Search for person",
             "[3]  Create person",
-            "[4]  View one generation back",
+            "[4]  View a persons parents",
             "[5]  View children",
             "[6]  View all users whos name and last name share the same starting letter"});
         }

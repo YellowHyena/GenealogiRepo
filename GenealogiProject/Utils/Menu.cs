@@ -60,7 +60,8 @@
             {
                 case ConsoleKey.D1:
                     Console.Clear();
-                    CRUD.SearchByName();
+                    Console.Write("Search for: ");
+                    CRUD.SearchByName(Console.ReadLine().ToLower());
                     break;
                 case ConsoleKey.D2:
                     Console.Clear();

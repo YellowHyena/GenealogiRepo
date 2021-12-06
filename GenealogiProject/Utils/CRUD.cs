@@ -47,7 +47,7 @@ namespace GenealogiProject.Utils
 
         private static void Delete(Person person)
         {
-            if (MenuHelper.ConfirmMenu($"delete {person.Name} {person.LastName}") == false) return;          
+            if (MenuHelper.ConfirmMenu($"delete {person.Name} {person.LastName}") == false) return; //If you decline deletion, return.         
             using(var db = new FamilyContext())
             { 
                 db.People.Remove(person);
@@ -55,11 +55,8 @@ namespace GenealogiProject.Utils
             }
         }
 
-        internal static void SearchByName()
+        internal static void SearchByName(string input)
         {
-            Console.Write("Search for: ");
-            string input = Console.ReadLine().ToLower();
-
             using (var db = new FamilyContext())
             {
                 var persons = db.People.Where(p => p.Name.Contains(input) || p.LastName.Contains(input)); 
