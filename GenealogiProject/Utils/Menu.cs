@@ -25,7 +25,7 @@
 
                 case ConsoleKey.D3:
                     Console.Clear();
-                        //CRUD.Add();
+                        CRUD.CreatePerson();
                     Console.ReadKey();
                     MainMenu();
                     break;
