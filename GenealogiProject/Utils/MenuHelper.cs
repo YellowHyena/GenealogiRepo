@@ -17,7 +17,7 @@
            {"Choose an option",
             "[1]  View all persons",
             "[2]  Search for person",
-            "[3]  Create person",
+            "[3]  Person options",
             "[4]  View a persons parents",
             "[5]  View a persons children",
             "[6]  View a persons siblings"});
@@ -31,20 +31,22 @@
              "[2] Try again"});
         }
 
-        internal static void SearchOptionsText()
-        {
-            Box.Simple(new string[]
-            {"[1] Search by name",
-             "[2] Search by age",  //null
-             "[3] Return to main menu"});
-        }
-
         internal static void AskForNamesText()
         {
             Box.Simple(new string[]
             {"Write the name and last name of " +
                  "the person you want to search for " +
                  "separated by a space"});
+        }
+
+        internal static void PersonOptionText()
+        {
+            Console.Clear();
+            Box.Simple(new string[]
+           {"[1]  Create person",
+            "[2]  Edit person",
+            "[3]  Delete person",
+            "[4]  Return to main menu", });
         }
     }
 }

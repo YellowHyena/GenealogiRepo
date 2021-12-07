@@ -11,78 +11,49 @@
             {
                 case ConsoleKey.D1:
                     Console.Clear();
-                    //View.Everyone();
+                    View.All();
                     Console.ReadKey();
                     MainMenu();
                     break;
 
                 case ConsoleKey.D2:
                     Console.Clear();
-                        SearchOptionsMenu();
+                    Console.Write("Search for: ");
+                    CRUD.SearchByName(Console.ReadLine());
                     Console.ReadKey();
                     MainMenu();
                     break;
 
                 case ConsoleKey.D3:
                     Console.Clear();
-                        CRUD.CreatePerson();
+                    PersonOptions();
                     Console.ReadKey();
                     MainMenu();
                     break;
 
                 case ConsoleKey.D4:
                     Console.Clear();
-                        View.Parents(CRUD.AskForNames());
+                    View.Parents(CRUD.AskForNames());
                     Console.ReadKey();
                     MainMenu();
                     break;
 
                 case ConsoleKey.D5:
                     Console.Clear();
-                        View.Children(CRUD.AskForNames());
+                    View.Children(CRUD.AskForNames());
                     Console.ReadKey();
                     MainMenu();
                     break;
 
                 case ConsoleKey.D6:
                     Console.Clear();
-                        View.Siblings(CRUD.AskForNames());
+                    View.Siblings(CRUD.AskForNames());
                     Console.ReadKey();
                     MainMenu();
                     break;
                 default:
                     Console.Clear();
                     MainMenu();
-                    break;
-            }
-        }
-
-        internal static void SearchOptionsMenu()
-        {
-            MenuHelper.SearchOptionsText();
-
-            var key = Console.ReadKey().Key;
-            switch (key)
-            {
-                case ConsoleKey.D1:
-                    Console.Clear();
-                    Console.Write("Search for: ");
-                    CRUD.SearchByName(Console.ReadLine());
-                    break;
-
-                case ConsoleKey.D2:
-                    Console.Clear();
-                    //CRUD.SearchByAge();
-                    break;
-
-                case ConsoleKey.D3:
-                    Console.Clear();
-                    MainMenu();
-                    break;
-
-                default:
-                    Console.Clear();
-                    SearchOptionsMenu();
                     break;
             }
         }
@@ -96,7 +67,7 @@
             {
                 case ConsoleKey.D1:
                     Console.Clear();
-                    MainMenu();
+                    CRUD.CreateOrDeletePerson("add");
                     return false;
 
                 case ConsoleKey.D2:
@@ -107,6 +78,35 @@
                     Console.Clear();
                     PersonNotFound();
                     return false;
+            }
+        }
+
+        internal static void PersonOptions()
+        {
+            MenuHelper.PersonOptionText();
+
+            var key = Console.ReadKey().Key;
+            switch (key)
+            {
+                case ConsoleKey.D1:
+                    Console.Clear();
+                    CRUD.CreateOrDeletePerson("add");
+                    break;
+
+                case ConsoleKey.D2:
+                    Console.Clear();
+                    CRUD.Edit();
+                    break;
+
+                case ConsoleKey.D3:
+                    Console.Clear();
+                    CRUD.CreateOrDeletePerson("delete");
+                    break;
+
+                default:
+                    Console.Clear();
+                    PersonOptions();
+                    break;
             }
         }
     }

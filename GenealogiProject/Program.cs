@@ -7,7 +7,7 @@ namespace GenealogiProject
     {
         static void Main(string[] args)
         {
-            //TheSimpsonsAdder.AddTheSimpsons();
+            TheSimpsonsAdder.AddTheSimpsons();
             Menu.MainMenu();
         }
     }

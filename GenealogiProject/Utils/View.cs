@@ -4,36 +4,45 @@ namespace GenealogiProject.Utils
 {
     internal class View
     {
-        internal static void Parents(string[] names) //Search for parent of searched person aka "child"
+        internal static void All() //Shows everyone
+        {
+            using var db = new FamilyContext();
+            foreach (var person in db.People)
+            {
+                Console.WriteLine(person.Name + " " + person.LastName);
+            }
+        }
+
+        internal static void Parents(string[] names) //Search for parent of searched person, aka "child"
         {
             using var db = new FamilyContext();
 
             string name = names[0];
             string lastName = names[1];
             string motherText = "";
-            string fatherText = "";        
+            string fatherText = "";
 
             var child = db.People.FirstOrDefault(c => c.Name == name && c.LastName == lastName);
-            var mother = db.People.FirstOrDefault(m => m.Id == child.Mother); 
-            var father = db.People.FirstOrDefault(d => d.Id == child.Father); 
+            var mother = db.People.FirstOrDefault(m => m.Id == child.Mother);
+            var father = db.People.FirstOrDefault(d => d.Id == child.Father);
 
 
             if (mother == null) motherText = "unknown";                                                //checks if child has parents and adapts text accordingly
             else motherText = $"{mother.Name} {mother.LastName}";
-          
+
             if (father == null) fatherText = "unknown";
             else fatherText = $"{father.Name} {father.LastName}";
 
             Box.Simple(new string[] { $"{name}'s mother is {motherText} and {name}'s father is {fatherText}." });
         }
 
-        internal static void Children(string[] names) //search for children of searched person aka "parent"
+        internal static void Children(string[] names) //search for children of searched person, aka "parent"
         {
             using var db = new FamilyContext();
-            
+
             string name = names[0];
             string lastName = names[1];
-            
+
             var parent = db.People.FirstOrDefault(p => p.Name == name && p.LastName == lastName);
             var children = db.People.Where(c => c.Mother == parent.Id || c.Father == parent.Id);
 
@@ -53,7 +62,7 @@ namespace GenealogiProject.Utils
             using var db = new FamilyContext();
 
             string name = names[0];
-            string lastName = names[1];        
+            string lastName = names[1];
 
             var person = db.People.FirstOrDefault(p => p.Name == name && p.LastName == lastName);
             var siblings = db.People.Where(s => s.Mother == person.Mother || s.Father == person.Father);
