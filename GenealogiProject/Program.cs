@@ -7,6 +7,7 @@ namespace GenealogiProject
     {
         static void Main(string[] args)
         {
+            //Sorry för min fula kod i detta programmet, tidspress och dålig planering.
             TheSimpsonsAdder.AddTheSimpsons();
             Menu.MainMenu();
         }
